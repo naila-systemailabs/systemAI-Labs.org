@@ -415,18 +415,20 @@
                 </div>
                 
                 <div class="card form-card">
-                    <form onsubmit="event.preventDefault(); alert('Message feature ready to connect to your backend! (e.g., Formspree, Formbold)');">
+                    <form action="https://formsubmit.co/support@systemailabs.org" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Project Inquiry - Context Miner Page">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" placeholder="John Doe" required>
+                            <input type="text" name="name" placeholder="John Doe" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="john@company.com" required>
+                            <input type="email" name="email" placeholder="john@company.com" required>
                         </div>
                         <div class="form-group">
                             <label>Project Details</label>
-                            <textarea rows="4" placeholder="Briefly describe your technical requirements or goals..." required></textarea>
+                            <textarea name="message" rows="4" placeholder="Briefly describe your technical requirements or goals..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Send Message</button>
                     </form>

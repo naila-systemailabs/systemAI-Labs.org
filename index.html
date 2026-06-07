@@ -1294,8 +1294,9 @@
                     </div>
                 </div>
                 <div class="form-panel reveal">
-                    <form id="contactForm"
-                        onsubmit="event.preventDefault(); alert('Message feature ready to connect to your backend! (e.g., Formspree, Formbold)');">
+                    <form id="contactForm" action="https://formsubmit.co/support@systemailabs.org" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Project Inquiry - SystemAILabs">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" placeholder="John Doe" required>
