@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Enterprise Dark Background -->
+  <rect width="256" height="256" rx="56" fill="#0b1120" />
+  
+  <!-- Minimalist 'S' -->
+  <path d="M 160 80 L 110 80 C 85 80 85 115 110 115 L 146 115 C 171 115 171 150 146 150 L 96 150" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="24" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+        
+  <!-- The '.org' Accent Dot -->
+  <circle cx="172" cy="166" r="16" fill="#2563eb" />
+</svg>

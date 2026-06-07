@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Context Miner | SystemAI Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0077b5; /* LinkedIn Blue */
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Waitlist CTA */
+        .cta-box {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #005a8a;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        footer a {
+            color: #64748b;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover { color: var(--primary); }
+        /* New Catchy Styles */
+        .banner-img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            text-align: left;
+        }
+        .feature-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; gap: 40px; text-align: left; padding: 60px 20px; flex-wrap: wrap;">
+    
+    <div style="flex: 1; min-width: 300px;">
+        <span class="badge">A SystemAI Labs Product</span>
+        <h1 style="font-size: 2.8rem; line-height: 1.1; margin: 10px 0;">LinkedIn Context Miner</h1>
+        <p class="subtitle" style="margin: 20px 0; text-align: left;">Extract AI-powered personality insights and career gold in one click. Stop wasting hours on manual research.</p>
+        
+        <div id="waitlistform" style="display: flex; gap: 10px; margin-top: 30px;">
+            <input type="email" id="emailInput" placeholder="Enter your email" required 
+                   style="padding: 15px; width: 220px; border-radius: 10px; border: 1px solid #e2e8f0; font-family: 'Inter', sans-serif;">
+            <button onclick="sendData()" id="submitBtn" style="border: none; cursor: pointer; background-color: #0077b5; color: white; padding: 15px 25px; border-radius: 10px; font-weight: 600;">
+                Join the Beta
+            </button>
+        </div>
+        <p id="responseMessage" style="margin-top: 15px; font-weight: 600; color: #059669; display: none;">Success! You're on the list.</p>
+    </div>
+
+    <div style="flex: 1; min-width: 300px;">
+        <img src="unnamed.webp" alt="LinkedIn Context Miner Dashboard" 
+             style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;">
+    </div>
+
+</div> 
+<div style="padding: 20px 0; text-align: center; border-top: 1px solid #e2e8f0; margin-top: 20px;">
+    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 40px;">How it Works</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: left; max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+        <div>
+            <h3 style="color: #0077b5;">1. Mine</h3>
+            <p style="color: #64748b;">Extract personality and career data from any profile in 1-click.</p>
+        </div>
+        <div>
+            <h3 style="color: #0077b5;">2. Insight</h3>
+            <p style="color: #64748b;">Get an AI-generated summary of their professional intent.</p>
+        </div>
+        <div>
+            <h3 style="color: #0077b5;">3. Connect</h3>
+            <p style="color: #64748b;">Use AI icebreakers to start conversations that actually get replies.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="video-container" style="max-width: 800px; margin: 60px auto; position: relative; background: var(--card-bg); border-radius: 24px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid var(--border);">
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/-0Z2e9is4O4" 
+                    title="LinkedIn Context Miner Demo" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        
+        </div> 
+<div style="text-align: center; padding: 40px 20px; background: #f8fafc; border-radius: 20px; margin: 40px auto; max-width: 800px; border: 1px solid #e2e8f0;">
+    <h3 style="margin: 0; color: #1e293b; font-size: 1.5rem;">Built for the 2k+ Connection Struggle</h3>
+    <p style="color: #64748b; margin-top: 10px;">
+        "I built this because managing a large network is impossible without AI. This tool is my personal shortcut to meaningful outreach."
+    </p>
+    <p style="font-weight: 600; color: #0077b5; margin-bottom: 0;">— Naila Shaikh, Founder @ SystemAI Labs</p>
+</div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 40px; text-align: center;">
+    
+    <div id="waitlistform" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%;">
+    
+    <div id="waitlistform">
+        <input type="email" id="emailInput" placeholder="Enter your email" required 
+               style="padding: 15px; width: 250px; border-radius: 10px; border: 1px solid #e2e8f0; margin-right: 10px; font-family: 'Inter', sans-serif;">
+        <button onclick="sendData()" id="submitBtn" style="border: none; cursor: pointer; background-color: #0077b5; color: white; padding: 15px 30px; border-radius: 10px; font-weight: 600;">
+            Join the Waitlist
+        </button>
+    </div>
+
+    <p id="responseMessage" style="margin-top: 15px; font-weight: 600; color: #059669; display: none;">Success! You're on the list.</p>
+    </div>
+
+<div style="width: 100%; text-align: center; margin-top: 25px;">
+    <p style="font-size: 0.95rem; color: #64748b; margin: 0;">
+        Have questions? 
+        <br> 
+        <span style="font-weight: 400;">Contact us at:</span> 
+        <a href="mailto:support@systemailabs.org" style="color: #0077b5; text-decoration: none; font-weight: 600; margin-left: 5px;">
+            support@systemailabs.org
+        </a>
+    </p>
+</div>
+
+<script>
+function sendData() {
+    const email = document.getElementById('emailInput').value;
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('responseMessage');
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzSjnGZgfQkZFfREcZwsgeDDN_8iBVlOSe5RFgtlvUjZ0EZt1oIiTlY3qSP0ohTne9v/exec";
+
+    if (!email) { alert('Please enter an email'); return; }
+    
+    btn.innerText = 'Sending...';
+    btn.disabled = true;
+
+    fetch(scriptURL + '?email=' + encodeURIComponent(email), { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        document.getElementById('waitlistform').style.display = 'none';
+        msg.style.display = 'block';
+    })
+    .catch(error => {
+        alert('Error! Please try again or email support.');
+        btn.innerText = 'Join the Waitlist';
+        btn.disabled = false;
+    });
+}
+</script>
+
+    <p style="margin-top: 20px; font-size: 0.9rem; color: #64748b;">
+        Or Reach out at: <a href="mailto:support@systemailabs.org" style="color: #0077b5; text-decoration: none; font-weight: 600;">digibuzz012@gmail.com</a>
+    </p>
+</div>
+       
+       <div style="max-width: 800px; margin: 80px auto; padding: 0 20px; text-align: left; border-top: 1px solid #e2e8f0; pt: 40px;">
+    <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem;">Frequently Asked Questions</h2>
+    
+    <div style="margin-bottom: 30px;">
+        <p style="font-weight: 700; color: #1e293b; margin-bottom: 8px;">Is my LinkedIn account safe?</p>
+        <p style="color: #64748b; margin: 0; line-height: 1.5;">Absolutely. We only analyze public profile data and never ask for your LinkedIn password. Your account remains 100% secure.</p>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <p style="font-weight: 700; color: #1e293b; margin-bottom: 8px;">How does the AI "mine" the context?</p>
+        <p style="color: #64748b; margin: 0; line-height: 1.5;">We use advanced AI models to synthesize a person's career history, skills, and activity into a 3-second summary so you don't have to scroll for 10 minutes.</p>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <p style="font-weight: 700; color: #1e293b; margin-bottom: 8px;">What is SystemAI Labs?</p>
+        <p style="color: #64748b; margin: 0; line-height: 1.5;">SystemAI Labs is our parent research studio focused on building high-efficiency AI tools for technical founders and power-networkers.</p>
+    </div>
+
+    <div style="text-align: center; padding: 60px 20px; background: #f1f5f9; border-radius: 20px; margin: 40px auto; max-width: 800px;">
+    <h3>Ready to start mining?</h3>
+    <div id="waitlistform2" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
+        <input type="email" id="emailInput2" placeholder="Enter your email" required 
+               style="padding: 15px; width: 250px; border-radius: 10px; border: 1px solid #e2e8f0; font-family: 'Inter', sans-serif;">
+        <button onclick="sendData2()" id="submitBtn2" style="border: none; cursor: pointer; background-color: #0077b5; color: white; padding: 15px 30px; border-radius: 10px; font-weight: 600;">
+            Join the Beta
+        </button>
+    </div>
+    <p id="responseMessage2" style="margin-top: 15px; font-weight: 600; color: #059669; display: none;">Success! You're on the list.</p>
+</div>
+
+<script>
+const sheetURL = "https://script.google.com/macros/s/AKfycbzSjnGZgfQkZFfREcZwsgeDDN_8iBVlOSe5RFgtlvUjZ0EZt1oIiTlY3qSP0ohTne9v/exec";
+
+function sendTopData() {
+    const email = document.getElementById('topEmail').value;
+    if (!email) { alert('Enter email'); return; }
+    
+    fetch(sheetURL + '?email=' + encodeURIComponent(email), { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        document.getElementById('topFormContainer').style.display = 'none';
+        document.getElementById('topSuccess').style.display = 'block';
+    });
+}
+
+function sendBottomData() {
+    const email = document.getElementById('bottomEmail').value;
+    if (!email) { alert('Enter email'); return; }
+    
+    fetch(sheetURL + '?email=' + encodeURIComponent(email), { method: 'GET', mode: 'no-cors' })
+    .then(() => {
+        document.getElementById('bottomFormContainer').style.display = 'none';
+        document.getElementById('bottomSuccess').style.display = 'block';
+    });
+}
+</script>
+</div>
+       <footer style="margin-top: 80px; padding: 40px 20px; border-top: 1px solid #e2e8f0; text-align: center; width: 100%;">
+    
+    <p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">
+        &copy; 2026 SystemAI Labs. All rights reserved.
+    </p>
+
+    <div style="margin-top: 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 25px;">
+        <a href="legal.html#privacy" style="text-decoration: none; color: #64748b; font-size: 0.9rem; font-weight: 500;">Privacy Policy</a>
+        <a href="legal.html#terms" style="text-decoration: none; color: #64748b; font-size: 0.9rem; font-weight: 500;">Terms of Service</a>
+        <a href="mailto:support@systemailabs.org" style="text-decoration: none; color: #0077b5; font-size: 0.9rem; font-weight: 600;">Contact Support</a>
+    </div>
+
+</footer>
+
+</body>
+</html>
