@@ -15,14 +15,14 @@
     
     <style>
         :root {
-            --bg-white: #ffffff;
-            --bg-light: #f8fafc;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --accent: #2563eb; /* Enterprise Blue */
-            --accent-dark: #1d4ed8;
-            --border: #e2e8f0;
-            --dark-bg: #0b1120;
+            --bg-white: #050508;
+            --bg-light: #0c0c12;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --accent: #a78bfa;
+            --accent-dark: #c084fc;
+            --border: rgba(255, 255, 255, 0.08);
+            --dark-bg: #050508;
         }
 
         * { box-sizing: border-box; }
@@ -42,10 +42,11 @@
         .blueprint-bg {
             background-color: var(--bg-light);
             background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             background-position: center center;
+            color: var(--text-main);
         }
         .blueprint-bg-dark {
             background-color: var(--dark-bg);
@@ -99,7 +100,7 @@
         .navbar {
             position: fixed;
             top: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.9);
+            background: rgba(5,5,8,0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--border);
@@ -146,13 +147,13 @@
         .btn-sm { padding: 10px 20px; font-size: 0.9rem; }
         .btn-primary {
             background: var(--accent);
-            color: white;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            color: #050508;
+            box-shadow: 0 4px 14px rgba(167, 139, 250, 0.3);
         }
         .btn-primary:hover {
             background: var(--accent-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4);
         }
         .btn-outline {
             background: transparent;
@@ -176,7 +177,7 @@
 
         /* Cards & Badges */
         .card {
-            background: white;
+            background: var(--bg-light);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 32px;
@@ -185,7 +186,7 @@
         .badge {
             display: inline-block;
             padding: 6px 12px;
-            background: #eff6ff;
+            background: rgba(167, 139, 250, 0.1);
             color: var(--accent);
             border-radius: 20px;
             font-size: 0.85rem;
@@ -218,7 +219,7 @@
         .icon-box {
             width: 48px; height: 48px;
             border-radius: 12px;
-            background: #eff6ff;
+            background: rgba(167, 139, 250, 0.1);
             color: var(--accent);
             display: flex;
             align-items: center;
@@ -227,8 +228,9 @@
 
         /* Forms */
         .form-card {
-            background: var(--bg-white);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            background: var(--bg-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
         }
         .form-group {
             margin-bottom: 24px;
@@ -243,6 +245,8 @@
             width: 100%;
             padding: 14px 16px;
             border: 1px solid var(--border);
+            background: var(--bg-white);
+            color: var(--text-main);
             border-radius: 8px;
             font-family: inherit;
             font-size: 1rem;
@@ -304,28 +308,21 @@
                         <strong>The Solution:</strong> A lightweight, high-performance Chrome Extension that injects a bespoke UI directly into the DOM. It automatically parses experience, badges, and recent activity as the user navigates, generating AI-powered conversation hooks instantly.
                     </p>
                     
-                    <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Core Stack</h3>
-                    <div class="grid-2" style="gap: 16px; margin-bottom: 0;">
-                        <div class="card" style="padding: 20px; border-radius: 12px;">
-                            <i data-feather="chrome" class="icon-accent" style="width:24px;height:24px;margin-bottom:8px;"></i>
-                            <div style="font-weight:600;">Manifest V3</div>
-                            <div style="font-size:0.85rem;color:var(--text-muted);">Secure extension architecture.</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Core Stack Payload</h3>
+                    <div style="background: #000; border: 1px solid var(--border); border-radius: 12px; padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+                        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                            <span style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></span>
+                            <span style="width:10px; height:10px; border-radius:50%; background:#eab308;"></span>
+                            <span style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></span>
                         </div>
-                        <div class="card" style="padding: 20px; border-radius: 12px;">
-                            <i data-feather="code" class="icon-accent" style="width:24px;height:24px;margin-bottom:8px;"></i>
-                            <div style="font-weight:600;">Vanilla ES6+</div>
-                            <div style="font-size:0.85rem;color:var(--text-muted);">Zero external dependencies.</div>
+                        <div style="color: var(--accent-dark);">{</div>
+                        <div style="margin-left: 20px; line-height: 1.8;">
+                            <span style="color: var(--accent);">"architecture"</span>: <span style="color: #fbbf24;">"Manifest V3 Autonomous Agent"</span>,<br>
+                            <span style="color: var(--accent);">"DOM_parsing"</span>: <span style="color: #fbbf24;">"MutationObserver + Vanilla ES6"</span>,<br>
+                            <span style="color: var(--accent);">"isolation"</span>: <span style="color: #fbbf24;">"Shadow DOM Encapsulation"</span>,<br>
+                            <span style="color: var(--accent);">"orchestration"</span>: <span style="color: #fbbf24;">"Serverless Apps Script Pipeline"</span>
                         </div>
-                        <div class="card" style="padding: 20px; border-radius: 12px;">
-                            <i data-feather="layers" class="icon-accent" style="width:24px;height:24px;margin-bottom:8px;"></i>
-                            <div style="font-weight:600;">Shadow DOM</div>
-                            <div style="font-size:0.85rem;color:var(--text-muted);">Encapsulated CSS styles.</div>
-                        </div>
-                        <div class="card" style="padding: 20px; border-radius: 12px;">
-                            <i data-feather="database" class="icon-accent" style="width:24px;height:24px;margin-bottom:8px;"></i>
-                            <div style="font-weight:600;">Apps Script</div>
-                            <div style="font-size:0.85rem;color:var(--text-muted);">Serverless backend integration.</div>
-                        </div>
+                        <div style="color: var(--accent-dark);">}</div>
                     </div>
                 </div>
                 <div>
