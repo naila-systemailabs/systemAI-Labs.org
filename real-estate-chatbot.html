@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A custom lead-generation chatbot trained specifically on proprietary real estate data to handle client inquiries 24/7.">
+    <meta name="keywords" content="Real Estate AI Chatbot, Lead Generation, SystemAILabs.org, Naila Shaikh, Chatbot, Tidio, Real Estate Automation">
+    <link rel="canonical" href="https://systemailabs.org/real-estate-chatbot.html">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://systemailabs.org/real-estate-chatbot.html">
+    <meta property="og:title" content="Real Estate AI Chatbot | SystemAILabs">
+    <meta property="og:description" content="Instant lead capture and accurate property matching via an autonomous AI Chatbot built for real estate agencies.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://systemailabs.org/real-estate-chatbot.html">
+    <meta property="twitter:title" content="Real Estate AI Chatbot | SystemAILabs">
+    <meta property="twitter:description" content="Instant lead capture and accurate property matching via an autonomous AI Chatbot built for real estate agencies.">
+
+    <!-- JSON-LD Schema for AEO/GEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Real Estate AI Chatbot",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "ChromeOS, Windows, macOS",
+      "description": "A custom lead-generation chatbot trained specifically on proprietary real estate data to handle client inquiries 24/7.",
+      "author": {
+        "@type": "Person",
+        "name": "Naila Shaikh"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SystemAILabs",
+        "url": "https://systemailabs.org"
+      }
+    }
+    </script>
+
+    <title>Real Estate AI Chatbot | SystemAILabs</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <style>
+        :root {
+            --bg-white: #050508;
+            --bg-light: #0c0c12;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --accent: #a78bfa;
+            --accent-dark: #c084fc;
+            --border: rgba(255, 255, 255, 0.08);
+            --dark-bg: #050508;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background: var(--bg-white);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Technical Blueprint Backgrounds */
+        .blueprint-bg {
+            background-color: var(--bg-light);
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+            color: var(--text-main);
+        }
+        .blueprint-bg-dark {
+            background-color: var(--dark-bg);
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+            color: white;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            letter-spacing: -0.02em;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-top: 0;
+        }
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section {
+            padding: 100px 0;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .align-center { align-items: center; }
+        .gap-60 { gap: 60px; }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            h1 { font-size: 2.5rem !important; }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(5,5,8,0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+            border: none;
+        }
+        .btn-sm { padding: 10px 20px; font-size: 0.9rem; }
+        .btn-primary {
+            background: var(--accent);
+            color: #050508;
+            box-shadow: 0 4px 14px rgba(167, 139, 250, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .btn-outline-light {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .btn-outline-light:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+        .w-100 { width: 100%; }
+
+        /* Cards & Badges */
+        .card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .badge-dark {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        /* Features & Icons */
+        .icon-accent {
+            color: var(--accent);
+            width: 32px;
+            height: 32px;
+            margin-bottom: 20px;
+        }
+        .icon-box {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Forms */
+        .form-card {
+            background: var(--bg-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            color: var(--text-main);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo" style="text-decoration:none;">SystemAILabs<span style="color:var(--accent)">.org</span></a>
+            <div class="nav-links">
+                <a href="index.html"><i data-feather="arrow-left" style="width:16px;height:16px;vertical-align:middle;margin-right:4px;"></i> Back to Portfolio</a>
+                <a href="#contact" class="btn btn-primary btn-sm">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Hero -->
+    <header class="blueprint-bg-dark section" style="padding-top: 160px; padding-bottom: 100px;">
+        <div class="container" style="text-align: center; max-width: 900px;">
+            <div class="badge-dark">Flagship Release</div>
+            <h1 style="font-size: 3.5rem; margin-bottom: 24px;">Real Estate AI Chatbot</h1>
+            <p style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 40px; font-family: 'JetBrains Mono', monospace;">
+                Capture leads instantly 24/7. An intelligent agent trained exclusively on your agency's property data.
+            </p>
+            
+            <!-- Waitlist Form 1 -->
+            <div style="background: rgba(255,255,255,0.05); padding: 32px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); display: inline-block; max-width: 100%;">
+                <div id="waitlistform" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                    <input type="email" id="emailInput" placeholder="Enter your email" required 
+                           style="padding: 14px 20px; width: 280px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-family: 'Inter', sans-serif;">
+                    <button onclick="sendData()" id="submitBtn" class="btn btn-primary">
+                        Join the Beta
+                    </button>
+                </div>
+                <p id="responseMessage" style="margin-top: 15px; font-weight: 600; color: #10b981; display: none;">Success! You're on the list.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Technical Overview & Video -->
+    <section class="section bg-white" style="border-bottom: 1px solid var(--border);">
+        <div class="container">
+            <div class="grid-2 gap-60 align-center">
+                <div>
+                    <h2 style="font-size: 2rem; margin-bottom: 24px;">Technical Documentation</h2>
+                    <p class="text-muted" style="margin-bottom: 16px; font-size: 1.1rem;">
+                        <strong>The Problem:</strong> Real estate agents lose leads outside of business hours because potential buyers demand instant answers to complex property questions.
+                    </p>
+                    <p class="text-muted" style="margin-bottom: 32px; font-size: 1.1rem;">
+                        <strong>The Solution:</strong> An intelligent, always-on chatbot embedded directly into your website. Trained on your specific MLS data and PDFs, it acts as a virtual agent that schedules viewings and qualifies buyers.
+                    </p>
+                    
+                    <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Core Stack Payload</h3>
+                    <div style="background: #000; border: 1px solid var(--border); border-radius: 12px; padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+                        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                            <span style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></span>
+                            <span style="width:10px; height:10px; border-radius:50%; background:#eab308;"></span>
+                            <span style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></span>
+                        </div>
+                        <div style="color: var(--accent-dark);">{</div>
+                        <div style="margin-left: 20px; line-height: 1.8;">
+                            <span style="color: var(--accent);">"architecture"</span>: <span style="color: #fbbf24;">"RAG-Powered Lead Capture"</span>,<br>
+                            <span style="color: var(--accent);">"integration"</span>: <span style="color: #fbbf24;">"Tidio + OpenAI API"</span>,<br>
+                            <span style="color: var(--accent);">"data_source"</span>: <span style="color: #fbbf24;">"MLS API + Custom PDFs"</span>,<br>
+                            <span style="color: var(--accent);">"conversion"</span>: <span style="color: #fbbf24;">"Automated CRM routing"</span>
+                        </div>
+                        <div style="color: var(--accent-dark);">}</div>
+                    </div>
+                </div>
+                <div>
+                    <!-- Video Embed -->
+                    <div class="card" style="padding: 12px; background: var(--bg-light); border-radius: 24px; text-align: center;">
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; background: #0f172a;">
+                            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                                    src="https://www.youtube.com/embed/-fZu_noaBlM?rel=0" 
+                                    title="Real Estate AI Chatbot Demo" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen 
+                                    referrerpolicy="strict-origin-when-cross-origin"
+                                    loading="lazy">
+                            </iframe>
+                        </div>
+                        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 4px;">
+                            <i data-feather="alert-circle" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i>
+                            If the video is blocked locally, <a href="https://youtu.be/_NSyXEdu2hk" target="_blank" style="color: var(--accent); font-weight: 600; text-decoration: none;">Watch directly on YouTube</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="section blueprint-bg">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 60px;">How the Extension Works</h2>
+            <div class="grid-3" style="text-align: left;">
+                <div class="card">
+                    <div class="icon-box" style="margin-bottom: 24px; font-weight:800; font-size:1.5rem;">1</div>
+                    <h3 style="color: var(--accent);">Mine</h3>
+                    <p class="text-muted" style="margin-top: 12px;">Extract personality, badges, and career data from any LinkedIn profile instantly with zero manual clicking.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-box" style="margin-bottom: 24px; font-weight:800; font-size:1.5rem;">2</div>
+                    <h3 style="color: var(--accent);">Insight</h3>
+                    <p class="text-muted" style="margin-top: 12px;">Receive an AI-generated, concise summary of the prospect's professional intent and hiring urgency.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-box" style="margin-bottom: 24px; font-weight:800; font-size:1.5rem;">3</div>
+                    <h3 style="color: var(--accent);">Connect</h3>
+                    <p class="text-muted" style="margin-top: 12px;">Utilize context-aware AI icebreakers to start conversations that are highly personalized and get replies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Waitlist & Quote -->
+    <section class="section bg-white text-center">
+        <div class="container" style="max-width: 800px;">
+            <div style="padding: 40px; background: var(--bg-light); border-radius: 20px; margin-bottom: 60px; border: 1px solid var(--border);">
+                <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Built for the 2k+ Connection Struggle</h3>
+                <p style="color: #64748b; font-size: 1.1rem; font-style: italic; margin-bottom: 24px;">
+                    "I built this because managing a large network is impossible without AI. This tool is my personal shortcut to meaningful outreach."
+                </p>
+                <div style="font-weight: 600; color: var(--accent);">— Naila Shaikh, Founder @ SystemAILabs.org</div>
+            </div>
+
+            <h3 style="font-size: 2rem; margin-bottom: 24px;">Ready to start mining?</h3>
+            <div id="waitlistform2" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <input type="email" id="emailInput2" placeholder="Enter your email" required 
+                       style="padding: 14px 20px; width: 280px; border-radius: 8px; border: 1px solid var(--border); font-family: 'Inter', sans-serif;">
+                <button onclick="sendData2()" id="submitBtn2" class="btn btn-primary">
+                    Join the Beta
+                </button>
+            </div>
+            <p id="responseMessage2" style="margin-top: 15px; font-weight: 600; color: #10b981; display: none;">Success! You're on the list.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-light);">
+        <div class="container">
+            <div class="grid-2 gap-60 align-center">
+                <div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Need Custom Development?</h2>
+                    <p class="text-muted" style="margin-bottom: 40px; font-size: 1.1rem;">
+                        Looking to build your own custom Chrome extension or AI integration? Fill out the form or reach out directly to discuss your technical architecture and design needs.
+                    </p>
+                    <div style="margin-bottom: 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                            <div class="icon-box"><i data-feather="mail"></i></div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-main);">Direct Email</div>
+                                <a href="mailto:support@systemailabs.org" style="color: var(--accent); text-decoration: none; font-weight: 500;">support@systemailabs.org</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card form-card">
+                    <form action="https://formsubmit.co/support@systemailabs.org" method="POST">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Project Inquiry - Real Estate AI Chatbot Page">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="john@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Project Details</label>
+                            <textarea name="message" rows="4" placeholder="Briefly describe your technical requirements or goals..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--dark-bg); color: #64748b; padding: 60px 0 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 16px;">SystemAILabs<span style="color:var(--accent)">.org</span></div>
+            <p style="margin-bottom: 32px; font-size: 1rem;">Bespoke Software Solutions & Digital Architecture</p>
+            <div style="display: flex; justify-content: center; gap: 32px; font-size: 0.95rem; margin-bottom: 40px;">
+                <a href="legal.html#privacy" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;">Privacy Policy</a>
+                <a href="legal.html#terms" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;">Terms of Service</a>
+                <a href="mailto:support@systemailabs.org" style="color: #94a3b8; text-decoration: none; transition: color 0.2s;">Contact Support</a>
+            </div>
+            <p style="font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; max-width: 600px; margin: 0 auto;">
+                &copy; 2026 SystemAILabs.org (Naila Shaikh). All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Google Apps Script URL for the waitlist
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzSjnGZgfQkZFfREcZwsgeDDN_8iBVlOSe5RFgtlvUjZ0EZt1oIiTlY3qSP0ohTne9v/exec";
+
+        // Top Waitlist Form Submission
+        function sendData() {
+            const email = document.getElementById('emailInput').value;
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('responseMessage');
+
+            if (!email) { alert('Please enter an email'); return; }
+            
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            fetch(scriptURL + '?email=' + encodeURIComponent(email), { method: 'GET', mode: 'no-cors' })
+            .then(() => {
+                document.getElementById('waitlistform').style.display = 'none';
+                msg.style.display = 'block';
+            })
+            .catch(error => {
+                alert('Error! Please try again or email support.');
+                btn.innerText = 'Join the Beta';
+                btn.disabled = false;
+            });
+        }
+
+        // Bottom Waitlist Form Submission
+        function sendData2() {
+            const email = document.getElementById('emailInput2').value;
+            const btn = document.getElementById('submitBtn2');
+            const msg = document.getElementById('responseMessage2');
+
+            if (!email) { alert('Please enter an email'); return; }
+            
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            fetch(scriptURL + '?email=' + encodeURIComponent(email), { method: 'GET', mode: 'no-cors' })
+            .then(() => {
+                document.getElementById('waitlistform2').style.display = 'none';
+                msg.style.display = 'block';
+            })
+            .catch(error => {
+                alert('Error! Please try again or email support.');
+                btn.innerText = 'Join the Beta';
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
