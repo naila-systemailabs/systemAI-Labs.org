@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+import re
+
+# Read index.html for nav and footer
+with open('index.html', 'r', encoding='utf-8') as f:
+    index_html = f.read()
+
+# Extract Nav
+nav_match = re.search(r'<nav class="nav" id="nav">.*?</nav>', index_html, re.DOTALL)
+master_nav = nav_match.group(0).replace('href="#services"', 'href="index.html#services"').replace('href="#work"', 'href="index.html#work"').replace('href="#manifesto"', 'href="index.html#manifesto"').replace('href="#" class="logo"', 'href="index.html" class="logo"')
+
+# Extract Footer
+footer_match = re.search(r'<footer>.*?</footer>', index_html, re.DOTALL)
+master_footer = footer_match.group(0)
+
+new_legal_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,32 +27,15 @@
     <link rel="stylesheet" href="global.css">
     
     <style>
-        .legal-section h1 { font-size: 2.5rem; margin-bottom: 24px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 16px; }
-        .legal-section h2 { font-size: 1.5rem; margin-top: 40px; margin-bottom: 16px; color: var(--text); }
-        .legal-section p, .legal-section li { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; }
-        .legal-section { margin-bottom: 60px; }
+        .legal-section h1 {{ font-size: 2.5rem; margin-bottom: 24px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 16px; }}
+        .legal-section h2 {{ font-size: 1.5rem; margin-top: 40px; margin-bottom: 16px; color: var(--text); }}
+        .legal-section p, .legal-section li {{ color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; }}
+        .legal-section {{ margin-bottom: 60px; }}
     </style>
 </head>
 <body>
 
-    <nav class="nav" id="nav">
-        <div class="container nav-inner">
-            <a href="index.html" class="logo">
-                <span class="logo-dot"></span>
-                SystemAILabs<span class="gradient-text">.org</span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html#services">Services</a>
-                <a href="index.html#work">Work</a>
-                <a href="#about">About</a>
-                <a href="#process">Process</a>
-                <a href="#contact" class="btn btn-primary">Start a Project</a>
-            </div>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                <i data-feather="menu" id="menuIcon"></i>
-            </button>
-        </div>
-    </nav>
+    {master_nav}
 
     <header class="hero" style="padding-top: 160px; padding-bottom: 60px;">
         <div class="container text-center">
@@ -70,27 +67,16 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="#" class="logo">SystemAILabs<span class="gradient-text">.org</span></a>
-                    <p>Bespoke software solutions &amp; digital architecture for ambitious teams.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="legal.html#privacy">Privacy Policy</a>
-                    <a href="legal.html#terms">Terms of Service</a>
-                    <a href="support.html">Contact Support</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 SystemAILabs.org (Naila Shaikh). All rights reserved.
-            </div>
-        </div>
-    </footer>
+    {master_footer}
 
     <script>
         feather.replace();
     </script>
 </body>
 </html>
+"""
+
+with open('legal.html', 'w', encoding='utf-8') as f:
+    f.write(new_legal_html)
+
+print("Synchronized legal.html")
